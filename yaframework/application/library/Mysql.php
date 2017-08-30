@@ -14,7 +14,7 @@ class Mysql
     private $_fetchMode = 2;
 
     /**
-     * ¹¹Ôìº¯Êı
+     * æ„é€ å‡½æ•°
      *
      * @param string $host
      * @param string $username
@@ -24,7 +24,7 @@ class Mysql
      */
     private function __construct($host, $username, $password, $dbname, $charset)
     {
-        //³õÊ¼»¯Êı¾İÁ¬½Ó
+        //åˆå§‹åŒ–æ•°æ®è¿æ¥
         try {
             $dns = 'mysql:dbname=' . $dbname . ';host=' . $host;
             $this->db = new PDO($dns, $username, $password, array(PDO::ATTR_PERSISTENT => true, PDO::ATTR_AUTOCOMMIT => 1));
@@ -39,7 +39,7 @@ class Mysql
     }
 
     /**
-     * µ÷ÓÃ³õÊ¼»¯MYSQLÁ¬½Ó
+     * è°ƒç”¨åˆå§‹åŒ–MYSQLè¿æ¥
      *
      * @param string $config
      * @return Aomp_Db_Mysql
@@ -56,7 +56,7 @@ class Mysql
     }
 
     /**
-     * »ñÈ¡¶àÌõÊı¾İ
+     * è·å–å¤šæ¡æ•°æ®
      *
      * @param string $sql
      * @param array $bind
@@ -74,7 +74,7 @@ class Mysql
     }
 
     /**
-     * »ñÈ¡µ¥ÌõÊı¾İ
+     * è·å–å•æ¡æ•°æ®
      *
      * @param string $sql
      * @param array $bind
@@ -92,7 +92,7 @@ class Mysql
     }
 
     /**
-     * »ñÈ¡Í³¼Æ»òÕßID
+     * è·å–ç»Ÿè®¡æˆ–è€…ID
      *
      * @param string $sql
      * @param array $bind
@@ -106,7 +106,7 @@ class Mysql
     }
 
     /**
-     * Ôö¼Ó
+     * å¢åŠ 
      *
      * @param string $table
      * @param array $bind
@@ -136,7 +136,7 @@ class Mysql
     }
 
     /**
-     * É¾³ı
+     * åˆ é™¤
      *
      * @param string $table
      * @param string $where
@@ -158,7 +158,7 @@ class Mysql
     }
 
     /**
-     * ĞŞ¸Ä
+     * ä¿®æ”¹
      *
      * @param string $table
      * @param array $bind
@@ -190,7 +190,7 @@ class Mysql
     }
 
     /**
-     * »ñÈ¡ĞÂÔöID
+     * è·å–æ–°å¢ID
      *
      * @param string $tableName
      * @param string $primaryKey
@@ -267,7 +267,7 @@ class Mysql
     }
 
     /**
-     * ¹Ø±ÕÊı¾İ¿â²Ù×÷
+     * å…³é—­æ•°æ®åº“æ“ä½œ
      */
     public function close()
     {
