@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @name IndexController
  * @author mysoft\fangw
@@ -16,6 +15,7 @@ class IndexController extends Yaf_Controller_Abstract
      */
     public function indexAction($name = "Stranger")
     {
+        print_r(Yaf\Application);
         //1. fetch query
         $get = $this->getRequest()->getQuery("get", "default value");
 
@@ -32,6 +32,13 @@ class IndexController extends Yaf_Controller_Abstract
 
     public function testAction()
     {
+        echo json_encode(Yaf_Application::app()->getConfig());
+        echo ini_get('yaf.environ');
+        $db =Mysql::getInstance();
+
+        $row = $db->fetchAll('select * from `p_user`');
+
+        print_r($row);die;
         //2. fetch model
         $model = new SampleModel();
 
