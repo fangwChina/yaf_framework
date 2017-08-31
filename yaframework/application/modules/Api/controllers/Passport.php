@@ -5,7 +5,7 @@
  * Date: 2017/8/30
  * Time: 11:35
  */
-class PassportController extends Yaf_Controller_Abstract{
+class PassportController extends \Yaf\Controller_Abstract{
 
     public  function loginAction(){
         echo 'login';

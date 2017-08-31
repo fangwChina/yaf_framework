@@ -1,5 +1,5 @@
 <?php
-
+namespace db\mysql;
 /**
  * Created by PhpStorm.
  * User: fangw
@@ -22,18 +22,17 @@ class Mysql
      * @param string $dbname
      * @param string $charset
      */
-    private function __construct($host, $username, $password, $dbname, $charset)
+    private function __construct($host, $username, $password, $dbname, $charset,$port=3306)
     {
         //初始化数据连接
         try {
-            $dns = 'mysql:dbname=' . $dbname . ';host=' . $host;
-            $this->db = new PDO($dns, $username, $password, array(PDO::ATTR_PERSISTENT => true, PDO::ATTR_AUTOCOMMIT => 1));
+            $dns = 'mysql:dbname=' . $dbname . ';host=' . $host.';port='.$port;
+            $this->db = new \PDO($dns, $username, $password, array(\PDO::ATTR_PERSISTENT => true, \PDO::ATTR_AUTOCOMMIT => 1));
             $this->db->query('SET NAMES ' . $charset);
-
         } catch (PDOException $e) {
             echo header("Content-type: text/html; charset=utf-8");
             echo '<pre />';
-            echo '<b>Connection failed:</b>' . $e->getMessage();
+            print_r( '<b>Connection failed:</b>' . $e->getMessage());
             die;
         }
     }
@@ -46,12 +45,15 @@ class Mysql
      */
     static public function getInstance($config = '')
     {
-        $host = 'karain';
-        $username = 'root';
-        $password ='95938';
-        $dbname = 'norgol';
-        $charset ='UTF8';
-        $db = new self($host, $username, $password, $dbname, $charset);
+        if($config==='')
+            $config=\Yaf\Application::app()->getConfig()->db;
+            $host = $config->host;
+        $username = $config->username;
+        $password =$config->password;
+        $dbname = $config->dbname;
+        $charset =$config->charset;
+        $port=$config->port;
+        $db = new self($host, $username, $password, $dbname, $charset,$port);
         return $db;
     }
 

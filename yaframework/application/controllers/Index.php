@@ -1,11 +1,13 @@
 <?php
+use db\mysql\Mysql;
+
 /**
  * @name IndexController
  * @author mysoft\fangw
  * @desc 默认控制器
  * @see http://www.php.net/manual/en/class.yaf-controller-abstract.php
  */
-class IndexController extends Yaf_Controller_Abstract
+class IndexController extends \Yaf\Controller_Abstract
 {
 
     /**
@@ -32,21 +34,22 @@ class IndexController extends Yaf_Controller_Abstract
 
     public function testAction()
     {
-        echo json_encode(Yaf_Application::app()->getConfig());
-        echo ini_get('yaf.environ');
-        $db =Mysql::getInstance();
+        //封装DB数据库连接
 
+        $db = Mysql::getInstance();
         $row = $db->fetchAll('select * from `p_user`');
-
-        print_r($row);die;
-        //2. fetch model
-        $model = new SampleModel();
-
-        //3. assign
-        $this->getView()->assign("content", $model->selectSample());
-        $this->getView()->assign('name', 'aasdfasdfa');
-        echo $this->getView()->render("/index/index.phtml");
+        print_r($row);
+        die;
         return false;
+    }
 
+    public function smartyAction()
+    {
+        /*默认template_dir目录下two/two.tpl*/
+      //  $this->getView()->assign("content", "Hello Hadoop! Welcome to Beijing!<br/>");
+        /*指定template_dir目录下的模板*/
+       // $this->getView()->display('smarty.tpl');
+        /*false为禁止显示默认模板   return false表示显示display指定的模板*/
+        //return false;
     }
 }
